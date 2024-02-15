@@ -1,20 +1,32 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { useState } from "react";
+import ProductsByCategory from "./src/screens/ProductsByCategory";
+import Home from "./src/screens/Home";
+import { Palete } from "./src/globals/Palete";
 
-export default function App() {
+const App = () => {
+  const [categorySelected, setCategorySelected] = useState("");
+
+  const selectedCategoryState = (category) => {
+    setCategorySelected(category);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Hola Coder!</Text>
-      <StatusBar style="auto" />
+      {categorySelected ? (
+        <ProductsByCategory categorySelected={categorySelected} />
+      ) : (
+        <Home selectedCategoryState={selectedCategoryState} />
+      )}
     </View>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingTop: 30,
+    backgroundColor: Palete.darkWhite,
   },
 });
