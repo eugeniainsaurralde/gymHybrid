@@ -1,12 +1,18 @@
 import { StyleSheet, View } from "react-native";
 import { useState } from "react";
+import { useFonts } from "expo-font";
 import ProductsByCategory from "./src/screens/ProductsByCategory";
 import Home from "./src/screens/Home";
 import { Palete } from "./src/globals/Palete";
+import { fontCollection } from "./src/globals/Fonts";
 
 const App = () => {
+  const [fontLoaded] = useFonts(fontCollection);
   const [categorySelected, setCategorySelected] = useState("");
 
+  if (!fontLoaded) {
+    return null;
+  }
   const selectedCategoryState = (category) => {
     setCategorySelected(category);
   };

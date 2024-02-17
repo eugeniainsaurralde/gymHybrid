@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import ShadowPrimary from "./wrappers/ShadowPrimary";
 import { Palete } from "../globals/Palete";
+import fonts from "../globals/Fonts";
 
 const CardCategory = ({ item, selectedCategoryState }) => {
   return (
@@ -26,5 +27,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     color: Palete.darkWhite,
+    fontFamily: fonts.secodaryFont,
   },
 });

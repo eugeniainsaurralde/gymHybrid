@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
   text: {
     color: Palete.secondary,
     fontSize: 30,
+    fontFamily: "LeagueGothicCondensedRegular",
   },
 });

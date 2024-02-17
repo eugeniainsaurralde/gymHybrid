@@ -12,7 +12,7 @@ const CardProducts = ({ item }) => {
       />
       <View style={styles.infoContainer}>
         <Text style={styles.text}>{item.title}</Text>
-        <Text style={styles.text}>{item.price}</Text>
+        <Text style={styles.text}>${item.price}</Text>
         <Pressable style={styles.primaryBotton}>
           <Text style={styles.text}>Agregar</Text>
         </Pressable>
