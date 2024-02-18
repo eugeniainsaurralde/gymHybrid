@@ -4,10 +4,10 @@ import { useFonts } from "expo-font";
 import ProductsByCategory from "./src/screens/ProductsByCategory";
 import Home from "./src/screens/Home";
 import { Palete } from "./src/globals/Palete";
-import { fontCollection } from "./src/globals/Fonts";
+import { FontCollection } from "./src/globals/Fonts";
 
 const App = () => {
-  const [fontLoaded] = useFonts(fontCollection);
+  const [fontLoaded] = useFonts(FontCollection);
   const [categorySelected, setCategorySelected] = useState("");
 
   if (!fontLoaded) {

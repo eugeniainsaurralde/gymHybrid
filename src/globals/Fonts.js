@@ -1,9 +1,9 @@
-export const fontCollection = {
-  BigShouldersDisplayRegular: require("../../assets/fonts/BigShouldersDisplay-Regular.ttf"),
-  LeagueGothicCondensedRegular: require("../../assets/fonts/LeagueGothic_Condensed-Regular.ttf"),
+export const FontCollection = {
+  "LeagueGothic-Regular": require("../../assets/fonts/LeagueGothic-Regular.ttf"),
+  "BigShouldersDisplay-Regular": require("../../assets/fonts/BigShouldersDisplay-Regular.ttf"),
 };
-const fonts = {
-  mainFont: LeagueGothicCondensedRegular,
-  secodaryFont: BigShouldersDisplayRegular,
+const Fonts = {
+  mainFont: "LeagueGothic-Regular",
+  secodaryFont: "BigShouldersDisplay-Regular",
 };
-export default fonts;
+export default Fonts;

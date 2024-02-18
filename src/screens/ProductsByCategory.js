@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Products from "../data/products.json";
-import { useEffect, useState } from "react";
 import CardProducts from "../components/CardProducts";
 
 const ProductsByCategory = ({ categorySelected }) => {
