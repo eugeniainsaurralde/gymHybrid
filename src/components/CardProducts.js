@@ -1,6 +1,8 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Palete } from "../globals/Palete";
+import Fonts from "../globals/Fonts";
+import PrimaryButton from "./wrappers/PrimaryButton";
 
 const CardProducts = ({ item }) => {
   return (
@@ -13,9 +15,9 @@ const CardProducts = ({ item }) => {
       <View style={styles.infoContainer}>
         <Text style={styles.text}>{item.title}</Text>
         <Text style={styles.text}>${item.price}</Text>
-        <Pressable style={styles.primaryBotton}>
-          <Text style={styles.text}>Agregar</Text>
-        </Pressable>
+        <PrimaryButton>
+          <Text>Agregar</Text>
+        </PrimaryButton>
       </View>
     </View>
   );
@@ -25,8 +27,8 @@ export default CardProducts;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
     backgroundColor: Palete.primary,
+    flexDirection: "row",
     marginHorizontal: "5%",
     marginVertical: "2%",
     padding: "3%",
@@ -38,20 +40,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   infoContainer: {
-    width: "70%",
-    marginHorizontal: "2%",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   text: {
     color: Palete.darkWhite,
-    fontSize: 18,
-    padding: "2%",
-  },
-  primaryBotton: {
-    backgroundColor: Palete.secondary,
-    borderRadius: 8,
-    paddingVertical: "3%",
-    paddingHorizontal: "10%",
+    fontSize: 20,
+    fontFamily: Fonts.secodaryFont,
   },
 });
