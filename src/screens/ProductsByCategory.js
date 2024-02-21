@@ -33,21 +33,16 @@ const ProductsByCategory = ({ categorySelected }) => {
     <>
       <Header title={categorySelected} />
       <Search onHandlerKeyWord={onHandlerKeyWord} />
-      <View styles={styles.flatList}>
-        <FlatList
-          data={productsFiltered}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <CardProducts item={item} />}
-        />
-      </View>
+
+      <FlatList
+        data={productsFiltered}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <CardProducts item={item} />}
+      />
     </>
   );
 };
 
 export default ProductsByCategory;
 
-const styles = StyleSheet.create({
-  flatList: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});

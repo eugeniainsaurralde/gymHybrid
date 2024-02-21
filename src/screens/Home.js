@@ -1,13 +1,13 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Categories from "../components/Categories";
 import Header from "../components/Header";
 
 const Home = ({ selectedCategoryState }) => {
   return (
-    <View>
+    <>
       <Header />
       <Categories selectedCategoryState={selectedCategoryState} />
-    </View>
+    </>
   );
 };
 

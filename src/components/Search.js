@@ -21,11 +21,13 @@ const Search = ({ onHandlerKeyWord }) => {
     onHandlerKeyWord(input);
     Keyboard.dismiss();
 
-    const expression = /[^a-zA-Z0-9\s]/;
+    const expression = /^[a-zA-Z0-9_]+$/;
     if (expression.test(input)) {
+      setError("");
+    } else {
       setError("Caracteres invalidos");
+      onHandlerKeyWord("");
     }
-    setError("");
   };
   const reset = () => {
     setInput("");
@@ -35,8 +37,8 @@ const Search = ({ onHandlerKeyWord }) => {
   };
 
   return (
-    <View>
-      <View style={styles.container}>
+    <View style={styles.conteiner}>
+      <View style={styles.content}>
         <TextInput
           placeholder="Buscar producto"
           style={styles.textInput}
@@ -50,7 +52,7 @@ const Search = ({ onHandlerKeyWord }) => {
           <EvilIcons name="close" size={35} color={Palete.primary} />
         </Pressable>
       </View>
-      {error ? <Text>{error}</Text> : null}
+      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 };
@@ -58,10 +60,12 @@ const Search = ({ onHandlerKeyWord }) => {
 export default Search;
 
 const styles = StyleSheet.create({
-  container: {
+  conteiner: {
+    padding: "5%",
+  },
+  content: {
     flexDirection: "row",
     alignItems: "center",
-    padding: "5%",
   },
   textInput: {
     borderWidth: 2,
@@ -69,5 +73,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: "2%",
     flex: 1,
+  },
+  error: {
+    color: Palete.primary,
   },
 });
