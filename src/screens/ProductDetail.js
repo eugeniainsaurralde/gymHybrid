@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Products from "../data/products.json";
 
-const ProductDetail = () => {
+const ProductDetail = ({ productId }) => {
+  const [productDetail, setProductDetail] = useState({});
+  useEffect(() => {
+    const productFinded = Products.find((product) => product.id === productId);
+    setProductDetail(productFinded);
+  }, [productId]);
   return (
     <View>
-      <Text>ProductDetail</Text>
+      <Text>{productDetail.title}</Text>
+      <Text>{productDetail.id}</Text>
     </View>
   );
 };

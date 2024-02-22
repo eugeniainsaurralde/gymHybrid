@@ -3,12 +3,14 @@ import { useState } from "react";
 import { useFonts } from "expo-font";
 import ProductsByCategory from "./src/screens/ProductsByCategory";
 import Home from "./src/screens/Home";
+import ProductDetail from "./src/screens/ProductDetail";
 import { Palete } from "./src/globals/Palete";
 import { FontCollection } from "./src/globals/Fonts";
 
 const App = () => {
   const [fontLoaded] = useFonts(FontCollection);
   const [categorySelected, setCategorySelected] = useState("");
+  const [productId, setProductId] = useState(0);
 
   if (!fontLoaded) {
     return null;
@@ -16,11 +18,21 @@ const App = () => {
   const selectedCategoryState = (category) => {
     setCategorySelected(category);
   };
+  const selectedProductId = (id) => {
+    setProductId(id);
+  };
 
   return (
     <View style={styles.container}>
       {categorySelected ? (
-        <ProductsByCategory categorySelected={categorySelected} />
+        productId ? (
+          <ProductDetail productId={productId} />
+        ) : (
+          <ProductsByCategory
+            categorySelected={categorySelected}
+            selectedProductId={selectedProductId}
+          />
+        )
       ) : (
         <Home selectedCategoryState={selectedCategoryState} />
       )}

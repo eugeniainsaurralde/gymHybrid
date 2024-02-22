@@ -5,7 +5,7 @@ import Products from "../data/products.json";
 import CardProducts from "../components/CardProducts";
 import Search from "../components/Search";
 
-const ProductsByCategory = ({ categorySelected }) => {
+const ProductsByCategory = ({ categorySelected, selectedProductId }) => {
   const [productsFiltered, setProductsFiltered] = useState("");
   const [keyWord, setKeyWord] = useState("");
 
@@ -33,11 +33,12 @@ const ProductsByCategory = ({ categorySelected }) => {
     <>
       <Header title={categorySelected} />
       <Search onHandlerKeyWord={onHandlerKeyWord} />
-
       <FlatList
         data={productsFiltered}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <CardProducts item={item} />}
+        renderItem={({ item }) => (
+          <CardProducts item={item} selectedProductId={selectedProductId} />
+        )}
       />
     </>
   );

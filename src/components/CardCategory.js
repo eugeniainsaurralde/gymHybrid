@@ -1,13 +1,21 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, useWindowDimensions } from "react-native";
 import ShadowPrimary from "./wrappers/ShadowPrimary";
 import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
 
 const CardCategory = ({ item, selectedCategoryState }) => {
+  const { width } = useWindowDimensions();
   return (
     <Pressable onPress={() => selectedCategoryState(item)}>
       <ShadowPrimary style={styles.container}>
-        <Text style={styles.text}>{item}</Text>
+        <Text
+          style={[
+            styles.text,
+            width >= 320 ? { fontSize: 30 } : { fontSize: 20 },
+          ]}
+        >
+          {item}
+        </Text>
       </ShadowPrimary>
     </Pressable>
   );
