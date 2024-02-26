@@ -1,11 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const ShadowPrimary = ({ style, children }) => {
-  return (
-    <View style={[styles.container, style]}>
-      <Text>{children}</Text>
-    </View>
-  );
+  return <View style={[styles.container, style]}>{children}</View>;
 };
 
 export default ShadowPrimary;

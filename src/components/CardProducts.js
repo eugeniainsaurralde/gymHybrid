@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
-import PrimaryButton from "./wrappers/PrimaryButton";
+import SecondaryButton from "./wrappers/SecondaryButton";
 
 const CardProducts = ({ item, selectedProductId }) => {
   const { width } = useWindowDimensions();
@@ -37,12 +37,12 @@ const CardProducts = ({ item, selectedProductId }) => {
         >
           ${item.price}
         </Text>
-        <PrimaryButton
+        <SecondaryButton
           style={styles.button}
           onPress={() => selectedProductId(item.id)}
         >
           <Text>Ver mas</Text>
-        </PrimaryButton>
+        </SecondaryButton>
       </View>
     </View>
   );
