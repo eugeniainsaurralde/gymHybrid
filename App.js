@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { useState } from "react";
 import { useFonts } from "expo-font";
 import ProductsByCategory from "./src/screens/ProductsByCategory";
@@ -23,20 +23,23 @@ const App = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {categorySelected ? (
-        productId ? (
-          <ProductDetail productId={productId} />
+    <>
+      <StatusBar backgroundColor={Palete.darkWhite} barStyle={"dark-content"} />
+      <SafeAreaView style={styles.container}>
+        {categorySelected ? (
+          productId ? (
+            <ProductDetail productId={productId} />
+          ) : (
+            <ProductsByCategory
+              categorySelected={categorySelected}
+              selectedProductId={selectedProductId}
+            />
+          )
         ) : (
-          <ProductsByCategory
-            categorySelected={categorySelected}
-            selectedProductId={selectedProductId}
-          />
-        )
-      ) : (
-        <Home selectedCategoryState={selectedCategoryState} />
-      )}
-    </View>
+          <Home selectedCategoryState={selectedCategoryState} />
+        )}
+      </SafeAreaView>
+    </>
   );
 };
 
@@ -45,7 +48,6 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
     backgroundColor: Palete.darkWhite,
   },
 });

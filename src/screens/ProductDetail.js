@@ -15,11 +15,14 @@ import PrimaryButton from "../components/wrappers/PrimaryButton";
 
 const ProductDetail = ({ productId }) => {
   const [productDetail, setProductDetail] = useState({});
+
   useEffect(() => {
     const productFinded = Products.find((product) => product.id === productId);
     setProductDetail(productFinded);
   }, [productId]);
+
   const { width } = useWindowDimensions();
+
   return (
     <View style={styles.container}>
       <Header title={productDetail.title} />
@@ -33,8 +36,23 @@ const ProductDetail = ({ productId }) => {
         />
       </ShadowPrimary>
       <View>
-        <Text style={styles.text}>{productDetail.description}</Text>
-        <Text style={[styles.text, styles.price]}>${productDetail.price}</Text>
+        <Text
+          style={[
+            styles.text,
+            width >= 320 ? { fontSize: 25 } : { fontSize: 18 },
+          ]}
+        >
+          {productDetail.description}
+        </Text>
+        <Text
+          style={[
+            styles.text,
+            styles.price,
+            width >= 320 ? { fontSize: 21 } : { fontSize: 16 },
+          ]}
+        >
+          ${productDetail.price}
+        </Text>
       </View>
       <PrimaryButton
         stylePressable={styles.pressable}
@@ -69,7 +87,6 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
   text: {
-    fontSize: 25,
     fontFamily: Fonts.secodaryFont,
   },
   price: {

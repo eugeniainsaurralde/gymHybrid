@@ -14,7 +14,6 @@ export default PrimaryButton;
 
 const styles = StyleSheet.create({
   primaryButton: {
-    flexWrap: "nowrap",
     backgroundColor: Palete.primary,
     borderRadius: 8,
     alignItems: "center",

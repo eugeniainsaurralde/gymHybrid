@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   text: {
     color: Palete.darkWhite,
     fontFamily: Fonts.mainFont,
-    fontSize: 25,
     textAlign: "center",
   },
 });
