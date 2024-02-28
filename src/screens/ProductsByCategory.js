@@ -1,11 +1,13 @@
 import { StyleSheet, FlatList, View } from "react-native";
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
 import Products from "../data/products.json";
 import CardProducts from "../components/CardProducts";
 import Search from "../components/Search";
+import { Palete } from "../globals/Palete";
 
-const ProductsByCategory = ({ categorySelected, selectedProductId }) => {
+const ProductsByCategory = ({ navigation, route }) => {
+  const { categorySelected } = route.params;
+
   const [productsFiltered, setProductsFiltered] = useState("");
   const [keyWord, setKeyWord] = useState("");
 
@@ -30,20 +32,24 @@ const ProductsByCategory = ({ categorySelected, selectedProductId }) => {
   };
 
   return (
-    <>
-      <Header title={categorySelected} />
+    <View style={styles.container}>
       <Search onHandlerKeyWord={onHandlerKeyWord} />
       <FlatList
         data={productsFiltered}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <CardProducts item={item} selectedProductId={selectedProductId} />
+          <CardProducts item={item} navigation={navigation} />
         )}
       />
-    </>
+    </View>
   );
 };
 
 export default ProductsByCategory;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Palete.darkWhite,
+  },
+});

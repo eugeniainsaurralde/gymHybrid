@@ -10,7 +10,7 @@ import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
 import SecondaryButton from "./wrappers/SecondaryButton";
 
-const CardProducts = ({ item, selectedProductId }) => {
+const CardProducts = ({ item, navigation }) => {
   const { width } = useWindowDimensions();
 
   return (
@@ -39,7 +39,12 @@ const CardProducts = ({ item, selectedProductId }) => {
         </Text>
         <SecondaryButton
           style={styles.button}
-          onPress={() => selectedProductId(item.id)}
+          onPress={() =>
+            navigation.navigate("ProductDetail", {
+              productId: item.id,
+              productTitle: item.title,
+            })
+          }
         >
           <Text>Ver mas</Text>
         </SecondaryButton>

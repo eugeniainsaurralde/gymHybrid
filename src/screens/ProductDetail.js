@@ -9,11 +9,11 @@ import React, { useEffect, useState } from "react";
 import Products from "../data/products.json";
 import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
-import Header from "../components/Header";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
 
-const ProductDetail = ({ productId }) => {
+const ProductDetail = ({ route }) => {
+  const { productId } = route.params;
   const [productDetail, setProductDetail] = useState({});
 
   useEffect(() => {
@@ -25,7 +25,6 @@ const ProductDetail = ({ productId }) => {
 
   return (
     <View style={styles.container}>
-      <Header title={productDetail.title} />
       <ShadowPrimary style={styles.imageContainer}>
         <Image
           source={{
@@ -68,8 +67,9 @@ export default ProductDetail;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: Palete.darkWhite,
     flex: 1,
-    marginHorizontal: "4%",
+    paddingHorizontal: "4%",
     paddingBottom: "2%",
     justifyContent: "space-evenly",
     alignItems: "center",
