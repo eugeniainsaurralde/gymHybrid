@@ -16,7 +16,7 @@ const Header = ({ title, navigation }) => {
 
   return (
     <View style={styles.container}>
-      {navigation.canGoBack() && (
+      {/* {navigation.canGoBack() && (
         <ShadowPrimary style={styles.goBack}>
           <Pressable
             onPress={() => {
@@ -26,11 +26,11 @@ const Header = ({ title, navigation }) => {
             <AntDesign name="left" size={30} color={Palete.darkGray} />
           </Pressable>
         </ShadowPrimary>
-      )}
+      )} */}
       <Text
         style={[
           styles.text,
-          width >= 320 ? { fontSize: 60 } : { fontSize: 40 },
+          width >= 320 ? { fontSize: 55 } : { fontSize: 40 },
         ]}
       >
         {title}
@@ -45,22 +45,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Palete.darkWhite,
     padding: "3%",
-    flexDirection: "row",
-    alignItems: "center",
-    position: "relative",
-  },
-  goBack: {
-    flex: 1,
-    position: "absolute",
-    backgroundColor: Palete.lightGray,
-    padding: "1%",
-    marginHorizontal: "2%",
-    borderRadius: 5,
+    flexWrap: "wrap",
   },
   text: {
-    flex: 11,
     color: Palete.secondary,
     fontFamily: Fonts.mainFont,
-    textAlign: "center",
   },
 });
