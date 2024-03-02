@@ -31,6 +31,7 @@ const Header = ({ title, navigation }) => {
         style={[
           styles.text,
           width >= 320 ? { fontSize: 55 } : { fontSize: 40 },
+          title.length > 20 ? { fontSize: 35 } : { fontSize: 55 },
         ]}
       >
         {title}

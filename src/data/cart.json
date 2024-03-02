@@ -1,0 +1,62 @@
+{
+  "total": 120,
+  "items": [
+    {
+      "id": 6,
+      "quantuty": 3,
+      "title": "MacBook Pro",
+      "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+      "price": 1749,
+      "discountPercentage": 11.02,
+      "rating": 4.57,
+      "stock": 83,
+      "brand": "Apple",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
+      "images": [
+        "https://i.dummyjson.com/data/products/6/1.png",
+        "https://i.dummyjson.com/data/products/6/2.jpg",
+        "https://i.dummyjson.com/data/products/6/3.png",
+        "https://i.dummyjson.com/data/products/6/4.jpg"
+      ]
+    },
+    {
+      "id": 21,
+      "title": "- Daal Masoor 500 grams",
+      "quantuty": 1,
+      "description": "Fine quality Branded Product Keep in a cool and dry place",
+      "price": 20,
+      "discountPercentage": 4.81,
+      "rating": 4.44,
+      "stock": 133,
+      "brand": "Saaf & Khaas",
+      "category": "groceries",
+      "thumbnail": "https://i.dummyjson.com/data/products/21/thumbnail.png",
+      "images": [
+        "https://i.dummyjson.com/data/products/21/1.png",
+        "https://i.dummyjson.com/data/products/21/2.jpg",
+        "https://i.dummyjson.com/data/products/21/3.jpg"
+      ]
+    },
+    {
+      "id": 34,
+      "title": "Plastic Table",
+      "quantuty": 9,
+      "description": "V\ufeffery good quality plastic table for multi purpose now in reasonable price",
+      "price": 50,
+      "discountPercentage": 4,
+      "rating": 4.01,
+      "stock": 136,
+      "brand": "Multi Purpose",
+      "category": "furniture",
+      "thumbnail": "https://i.dummyjson.com/data/products/34/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/34/1.jpg",
+        "https://i.dummyjson.com/data/products/34/2.jpg",
+        "https://i.dummyjson.com/data/products/34/3.jpg",
+        "https://i.dummyjson.com/data/products/34/4.jpg",
+        "https://i.dummyjson.com/data/products/34/thumbnail.jpg"
+      ]
+    }
+  ]
+}

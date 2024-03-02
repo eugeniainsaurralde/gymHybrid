@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: Palete.primary,
     borderRadius: 8,
     alignItems: "center",
+    justifyContent: "center",
   },
   text: {
     fontFamily: Fonts.secodaryFont,

@@ -1,18 +1,23 @@
-import { StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Cart from "../screens/Cart";
-import { Header } from "../components/Header";
+import Header from "../components/Header";
+import { Palete } from "../globals/Palete";
 
 const Stack = createNativeStackNavigator();
 const CartStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Cart"
+      initialRouteName="Carrito"
       screenOptions={() => {
         return {
-          header: () => {
-            return;
+          headerTitle: () => {
+            return <Header title={"Cart"} />;
           },
+          headerStyle: {
+            backgroundColor: Palete.darkWhite,
+          },
+          headerTitleAlign: "center",
+          headerShadowVisible: false,
         };
       }}
     >
@@ -22,5 +27,3 @@ const CartStack = () => {
 };
 
 export default CartStack;
-
-const styles = StyleSheet.create({});
