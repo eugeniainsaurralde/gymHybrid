@@ -11,7 +11,7 @@ import Fonts from "../globals/Fonts";
 import { AntDesign } from "@expo/vector-icons";
 import ShadowPrimary from "./wrappers/ShadowPrimary";
 
-const Header = ({ title, navigation }) => {
+const Header = ({ title, navigation, color = Palete.secondary }) => {
   const { width } = useWindowDimensions();
 
   return (
@@ -32,6 +32,7 @@ const Header = ({ title, navigation }) => {
           styles.text,
           width >= 320 ? { fontSize: 55 } : { fontSize: 40 },
           title.length > 20 ? { fontSize: 35 } : { fontSize: 55 },
+          { color: color },
         ]}
       >
         {title}
@@ -49,7 +50,6 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   text: {
-    color: Palete.secondary,
     fontFamily: Fonts.mainFont,
   },
 });

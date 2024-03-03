@@ -11,11 +11,12 @@ const CartStack = () => {
       screenOptions={() => {
         return {
           headerTitle: () => {
-            return <Header title={"Cart"} />;
+            return <Header title={"Carrito"} color={Palete.primary} />;
           },
           headerStyle: {
             backgroundColor: Palete.darkWhite,
           },
+
           headerTitleAlign: "center",
           headerShadowVisible: false,
         };
