@@ -6,6 +6,10 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React, { useEffect, useState } from "react";
+
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../features/Cart/cartSlice";
+
 import Products from "../data/products.json";
 import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
@@ -22,6 +26,8 @@ const ProductDetail = ({ route }) => {
   }, [productId]);
 
   const { width } = useWindowDimensions();
+
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
@@ -56,6 +62,7 @@ const ProductDetail = ({ route }) => {
       <PrimaryButton
         stylePressable={styles.pressable}
         styleText={[width >= 320 ? { fontSize: 25 } : { fontSize: 18 }]}
+        onPress={() => dispatch(addCartItem(productDetail))}
       >
         {"Agregar al carrito"}
       </PrimaryButton>
