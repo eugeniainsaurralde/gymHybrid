@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addCartItem } from "../features/Cart/cartSlice";
 
 import Products from "../data/products.json";
@@ -28,8 +28,11 @@ const ProductDetail = ({ route }) => {
 
   const { width } = useWindowDimensions();
 
+  const [quantity, setQuantity] = useState(0);
+  const onHandleQuantity = (quantity) => {
+    setQuantity(quantity);
+  };
   const dispatch = useDispatch();
-  const quantity = useSelector((state) => state.counter.value);
 
   return (
     <View style={styles.container}>
@@ -53,7 +56,7 @@ const ProductDetail = ({ route }) => {
       </Text>
 
       <View style={styles.numberInfoContainer}>
-        <Counter />
+        <Counter onHandleQuantity={onHandleQuantity} />
         <Text
           style={[
             styles.text,

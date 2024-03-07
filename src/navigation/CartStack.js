@@ -16,7 +16,6 @@ const CartStack = () => {
           headerStyle: {
             backgroundColor: Palete.darkWhite,
           },
-
           headerTitleAlign: "center",
           headerShadowVisible: false,
         };

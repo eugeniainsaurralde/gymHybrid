@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Palete } from "../globals/Palete";
 import ShopStack from "./ShopStack";
 import CartStack from "./CartStack";
-import Orders from "../screens/Orders";
 import TabBarIcons from "../components/TabBarIcons";
 import OrderStack from "./OrderStack";
 
