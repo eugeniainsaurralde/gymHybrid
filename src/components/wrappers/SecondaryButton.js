@@ -1,19 +1,14 @@
-import { StyleSheet, Text, Pressable, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, Pressable } from "react-native";
 import { Palete } from "../../globals/Palete";
 import Fonts from "../../globals/Fonts";
 
-const SecondaryButton = ({ style, children, onPress }) => {
-  const { width } = useWindowDimensions();
+const SecondaryButton = ({ stylePressable, styleText, children, onPress }) => {
   return (
-    <Pressable style={[styles.secondaryButton, style]} onPress={onPress}>
-      <Text
-        style={[
-          styles.text,
-          width >= 320 ? { fontSize: 25 } : { fontSize: 18 },
-        ]}
-      >
-        {children}
-      </Text>
+    <Pressable
+      style={[styles.secondaryButton, stylePressable]}
+      onPress={onPress}
+    >
+      <Text style={[styles.text, styleText]}>{children}</Text>
     </Pressable>
   );
 };
@@ -25,6 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: Palete.secondary,
     borderRadius: 8,
     alignItems: "center",
+    justifyContent: "center",
   },
   text: {
     color: Palete.darkWhite,

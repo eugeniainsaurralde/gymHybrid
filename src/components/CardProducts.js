@@ -38,7 +38,7 @@ const CardProducts = ({ item, navigation }) => {
           ${item.price}
         </Text>
         <SecondaryButton
-          style={styles.button}
+          stylePressable={styles.button}
           onPress={() =>
             navigation.navigate("ProductDetail", {
               productId: item.id,
@@ -46,7 +46,9 @@ const CardProducts = ({ item, navigation }) => {
             })
           }
         >
-          <Text>Ver mas</Text>
+          <Text style={width >= 320 ? { fontSize: 25 } : { fontSize: 18 }}>
+            Ver mas
+          </Text>
         </SecondaryButton>
       </View>
     </View>

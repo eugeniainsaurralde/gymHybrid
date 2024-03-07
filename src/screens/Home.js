@@ -6,7 +6,6 @@ import Counter from "../components/Counter";
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Counter />
       <Categories navigation={navigation} />
     </View>
   );

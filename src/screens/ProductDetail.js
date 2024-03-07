@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCartItem } from "../features/Cart/cartSlice";
 
 import Products from "../data/products.json";
@@ -15,6 +15,7 @@ import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
+import Counter from "../components/Counter";
 
 const ProductDetail = ({ route }) => {
   const { productId } = route.params;
@@ -28,6 +29,7 @@ const ProductDetail = ({ route }) => {
   const { width } = useWindowDimensions();
 
   const dispatch = useDispatch();
+  const quantity = useSelector((state) => state.counter.value);
 
   return (
     <View style={styles.container}>
@@ -40,29 +42,32 @@ const ProductDetail = ({ route }) => {
           resizeMode={"cover"}
         />
       </ShadowPrimary>
-      <View>
+
+      <Text
+        style={[
+          styles.text,
+          width >= 320 ? { fontSize: 25 } : { fontSize: 18 },
+        ]}
+      >
+        {productDetail.description}
+      </Text>
+
+      <View style={styles.numberInfoContainer}>
+        <Counter />
         <Text
           style={[
             styles.text,
             width >= 320 ? { fontSize: 25 } : { fontSize: 18 },
           ]}
         >
-          {productDetail.description}
-        </Text>
-        <Text
-          style={[
-            styles.text,
-            styles.price,
-            width >= 320 ? { fontSize: 21 } : { fontSize: 16 },
-          ]}
-        >
           ${productDetail.price}
         </Text>
       </View>
+
       <PrimaryButton
         stylePressable={styles.pressable}
         styleText={[width >= 320 ? { fontSize: 25 } : { fontSize: 18 }]}
-        onPress={() => dispatch(addCartItem(productDetail))}
+        onPress={() => dispatch(addCartItem({ ...productDetail, quantity }))}
       >
         {"Agregar al carrito"}
       </PrimaryButton>
@@ -77,7 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: Palete.darkWhite,
     flex: 1,
     paddingHorizontal: "4%",
-    paddingBottom: "2%",
     justifyContent: "space-evenly",
     alignItems: "center",
   },
@@ -96,8 +100,11 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: Fonts.secodaryFont,
   },
-  price: {
-    textAlign: "right",
+  numberInfoContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    width: "100%",
   },
   pressable: {
     width: "50%",

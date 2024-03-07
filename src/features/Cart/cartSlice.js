@@ -14,9 +14,12 @@ export const cartSlice = createSlice({
         (item) => item.id === actions.payload.id
       );
       if (index === -1) {
-        state.items = [...state.items, { ...actions.payload, quantity: 1 }];
+        state.items = [
+          ...state.items,
+          { ...actions.payload, quantity: actions.payload.quantity },
+        ];
       } else {
-        state.items[index].quantity = state.items[index].quantity + 1;
+        state.items[index].quantity = actions.payload.quantity;
       }
       state.total = state.items.reduce(
         (acc, item) => acc + item.price * item.quantity,
