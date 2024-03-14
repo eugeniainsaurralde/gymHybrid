@@ -5,12 +5,12 @@ import {
   Image,
   useWindowDimensions,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { addCartItem } from "../features/Cart/cartSlice";
+import { useGetProductByIdQuery } from "../app/services/shop";
 
-import Products from "../data/products.json";
 import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
@@ -19,12 +19,8 @@ import Counter from "../components/Counter";
 
 const ProductDetail = ({ route }) => {
   const { productId } = route.params;
-  const [productDetail, setProductDetail] = useState({});
-
-  useEffect(() => {
-    const productFinded = Products.find((product) => product.id === productId);
-    setProductDetail(productFinded);
-  }, [productId]);
+  const { data: productDetail, isLoading } = useGetProductByIdQuery(productId);
+  const dispatch = useDispatch();
 
   const { width } = useWindowDimensions();
 
@@ -32,7 +28,8 @@ const ProductDetail = ({ route }) => {
   const onHandleQuantity = (quantity) => {
     setQuantity(quantity);
   };
-  const dispatch = useDispatch();
+
+  if (isLoading) return null;
 
   return (
     <View style={styles.container}>

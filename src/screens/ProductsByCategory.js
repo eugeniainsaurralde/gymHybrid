@@ -1,14 +1,16 @@
 import { StyleSheet, FlatList, View } from "react-native";
 import { useEffect, useState } from "react";
-import Products from "../data/products.json";
+
+import { useGetProductsByCategoryQuery } from "../app/services/shop";
+
 import CardProducts from "../components/CardProducts";
 import Search from "../components/Search";
 import { Palete } from "../globals/Palete";
 
 const ProductsByCategory = ({ navigation, route }) => {
   const { categorySelected } = route.params;
-
-  const [productsFiltered, setProductsFiltered] = useState("");
+  const { data: products } = useGetProductsByCategoryQuery(categorySelected);
+  const [productsFiltered, setProductsFiltered] = useState([]);
   const [keyWord, setKeyWord] = useState("");
 
   useEffect(() => {
@@ -21,11 +23,9 @@ const ProductsByCategory = ({ navigation, route }) => {
         })
       );
     } else {
-      setProductsFiltered(
-        Products.filter((product) => product.category === categorySelected)
-      );
+      setProductsFiltered(products);
     }
-  }, [categorySelected, keyWord]);
+  }, [categorySelected, keyWord, products]);
 
   const onHandlerKeyWord = (k) => {
     setKeyWord(k);
