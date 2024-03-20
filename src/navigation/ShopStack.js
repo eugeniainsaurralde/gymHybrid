@@ -1,4 +1,3 @@
-import { StyleSheet, useWindowDimensions } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import ProductsByCategory from "../screens/ProductsByCategory";
@@ -10,16 +9,14 @@ import { Palete } from "../globals/Palete";
 const Stack = createNativeStackNavigator();
 
 const ShopStack = () => {
-  const { width } = useWindowDimensions();
   return (
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={({ route, navigation }) => {
+      screenOptions={({ route }) => {
         return {
           headerTitle: () => {
             return (
               <Header
-                navigation={navigation}
                 title={
                   route.name === "Home"
                     ? "Categorias"
@@ -46,5 +43,3 @@ const ShopStack = () => {
 };
 
 export default ShopStack;
-
-const styles = StyleSheet.create({});

@@ -1,5 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
+import { usePostOrderMutation } from "../app/services/shop";
 
 import CardItemCart from "../components/CardItemCart";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
@@ -8,6 +9,12 @@ import { Palete } from "../globals/Palete";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const [triggerPost, result] = usePostOrderMutation();
+
+  const confirmCart = () => {
+    triggerPost({ total, cartItems, user: "loggedUser" });
+  };
+
   return (
     <View style={styles.container}>
       <FlatList

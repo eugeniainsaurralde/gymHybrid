@@ -1,32 +1,13 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import React from "react";
 import { Palete } from "../globals/Palete";
 import Fonts from "../globals/Fonts";
-import { AntDesign } from "@expo/vector-icons";
-import ShadowPrimary from "./wrappers/ShadowPrimary";
 
-const Header = ({ title, navigation, color = Palete.secondary }) => {
+const Header = ({ title, color = Palete.secondary }) => {
   const { width } = useWindowDimensions();
 
   return (
     <View style={styles.container}>
-      {/* {navigation.canGoBack() && (
-        <ShadowPrimary style={styles.goBack}>
-          <Pressable
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
-            <AntDesign name="left" size={30} color={Palete.darkGray} />
-          </Pressable>
-        </ShadowPrimary>
-      )} */}
       <Text
         style={[
           styles.text,
