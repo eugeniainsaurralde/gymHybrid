@@ -8,7 +8,7 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (user) => ({
-        url: "accounts:signInWithCustomToken?key=AIzaSyCd6kaJCrdPmzGrF5Mn5eVYPpfPLjtbMPM",
+        url: "accounts:signUp?key=AIzaSyCd6kaJCrdPmzGrF5Mn5eVYPpfPLjtbMPM",
         method: "POST",
         body: user,
       }),

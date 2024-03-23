@@ -7,7 +7,7 @@ const MainNavigator = () => {
   const [idToken, setIdToken] = useState("");
   return (
     <NavigationContainer>
-      {idToken ? <TabNavigator /> : <AuthStack />}
+      {idToken ? <TabNavigator /> : <AuthStack setIdToken={setIdToken} />}
     </NavigationContainer>
   );
 };

@@ -7,7 +7,8 @@ import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 
 import { useRegisterMutation } from "../app/services/auth";
 
-const Register = ({ navigation }) => {
+const Register = ({ navigation, route }) => {
+  const { setIdToken } = route.params;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -22,8 +23,9 @@ const Register = ({ navigation }) => {
   const onHandleConfirmPassword = (t) => {
     setConfirmPassword(t);
   };
-  const onSubmit = () => {
-    triggerRegister({ email, password });
+  const onSubmit = async () => {
+    const { data } = await triggerRegister({ email, password });
+    setIdToken(data.idToken);
   };
   return (
     <View style={styles.container}>
