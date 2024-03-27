@@ -6,12 +6,15 @@ import PrimaryButton from "../components/wrappers/PrimaryButton";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 
 import { useRegisterMutation } from "../app/services/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/Auth/authSlice";
 
-const Register = ({ navigation, route }) => {
-  const { setIdToken } = route.params;
+const Register = ({ navigation }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const [triggerRegister] = useRegisterMutation();
 
   const onHandleEmail = (t) => {
@@ -25,7 +28,7 @@ const Register = ({ navigation, route }) => {
   };
   const onSubmit = async () => {
     const { data } = await triggerRegister({ email, password });
-    setIdToken(data.idToken);
+    dispatch(setUser({ email: data.email, idToken: data.idToken }));
   };
   return (
     <View style={styles.container}>

@@ -8,7 +8,7 @@ import Register from "../screens/Register";
 
 const Stack = createNativeStackNavigator();
 
-const AuthStack = ({ setIdToken }) => {
+const AuthStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Login"
@@ -33,11 +33,7 @@ const AuthStack = ({ setIdToken }) => {
       }}
     >
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        initialParams={{ setIdToken }}
-      />
+      <Stack.Screen name="Register" component={Register} />
     </Stack.Navigator>
   );
 };

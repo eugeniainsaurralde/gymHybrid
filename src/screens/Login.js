@@ -1,11 +1,19 @@
-import { StyleSheet, View, TextInput, Pressable, Text } from "react-native";
+import { StyleSheet, View, Pressable, Text } from "react-native";
 import React, { useState } from "react";
+
+import { useLoginMutation } from "../app/services/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/Auth/authSlice";
+
 import { Palete } from "../globals/Palete";
-import Input from "../components/Input";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
+import Input from "../components/Input";
 
 const Login = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const [triggerLogin] = useLoginMutation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,9 +23,9 @@ const Login = ({ navigation }) => {
   const onHandlePassword = (t) => {
     setPassword(t);
   };
-  const onSubmit = () => {
-    console.log(email);
-    console.log(password);
+  const onSubmit = async () => {
+    const { data } = await triggerLogin({ email, password });
+    dispatch(setUser({ email: data.email, idToken: data.idToken }));
   };
   return (
     <View style={styles.container}>
