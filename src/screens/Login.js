@@ -9,6 +9,7 @@ import { Palete } from "../globals/Palete";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 import Input from "../components/Input";
+import { loginSchema } from "../validations/authSchema";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -17,15 +18,35 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const onHandleEmail = (t) => {
     setEmail(t);
   };
   const onHandlePassword = (t) => {
     setPassword(t);
   };
+
   const onSubmit = async () => {
-    const { data } = await triggerLogin({ email, password });
-    dispatch(setUser({ email: data.email, idToken: data.idToken }));
+    try {
+      loginSchema.validateSync({ email, password });
+      const { data } = await triggerLogin({ email, password });
+      dispatch(setUser({ email: data.email, idToken: data.idToken }));
+    } catch (error) {
+      setEmailError("");
+      setPasswordError("");
+      switch (error.path) {
+        case "email":
+          setEmailError(error.message);
+          break;
+        case "password":
+          setPasswordError(error.message);
+          break;
+        default:
+          break;
+      }
+    }
   };
   return (
     <View style={styles.container}>
@@ -35,12 +56,14 @@ const Login = ({ navigation }) => {
             placeholder={"E-mail"}
             onHandle={onHandleEmail}
             value={email}
+            error={emailError}
           />
           <Input
             placeholder={"Contraseña"}
             onHandle={onHandlePassword}
             value={password}
             isSecure={true}
+            error={passwordError}
           />
         </View>
         <View style={styles.bottomContent}>

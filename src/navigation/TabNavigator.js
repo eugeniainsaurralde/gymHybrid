@@ -5,8 +5,9 @@ import { Palete } from "../globals/Palete";
 
 import ShopStack from "./ShopStack";
 import CartStack from "./CartStack";
-import TabBarIcons from "../components/TabBarIcons";
 import OrderStack from "./OrderStack";
+import ProfileStack from "./ProfileStack";
+import TabBarIcons from "../components/TabBarIcons";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,6 +48,15 @@ const TabNavigator = () => {
           ),
         }}
       />
+      <Tab.Screen
+        name="ProfileStack"
+        component={ProfileStack}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcons nameIcon={"user"} focused={focused} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -57,6 +67,6 @@ const styles = StyleSheet.create({
   tabNav: {
     backgroundColor: Palete.secondary,
     borderColor: Palete.darkWhite,
-    height: "8%",
+    height: "9%",
   },
 });

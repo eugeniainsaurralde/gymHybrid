@@ -8,12 +8,18 @@ import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 import { useRegisterMutation } from "../app/services/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/Auth/authSlice";
+import { registerSchema } from "../validations/authSchema";
 
 const Register = ({ navigation }) => {
   const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const [triggerRegister] = useRegisterMutation();
 
@@ -27,8 +33,28 @@ const Register = ({ navigation }) => {
     setConfirmPassword(t);
   };
   const onSubmit = async () => {
-    const { data } = await triggerRegister({ email, password });
-    dispatch(setUser({ email: data.email, idToken: data.idToken }));
+    try {
+      registerSchema.validateSync({ email, password, confirmPassword });
+      const { data } = await triggerRegister({ email, password });
+      dispatch(setUser({ email: data.email, idToken: data.idToken }));
+    } catch (error) {
+      setEmailError("");
+      setPasswordError("");
+      setConfirmPasswordError("");
+      switch (error.path) {
+        case "email":
+          setEmailError(error.message);
+          break;
+        case "password":
+          setPasswordError(error.message);
+          break;
+        case "confirmPassword":
+          setConfirmPasswordError(error.message);
+          break;
+        default:
+          break;
+      }
+    }
   };
   return (
     <View style={styles.container}>
@@ -38,21 +64,21 @@ const Register = ({ navigation }) => {
             placeholder={"E-mail"}
             onHandle={onHandleEmail}
             value={email}
-            error={""}
+            error={emailError}
           />
           <Input
             placeholder={"Contraseña"}
             onHandle={onHandlePassword}
             value={password}
             isSecure={true}
-            error={""}
+            error={passwordError}
           />
           <Input
             placeholder={"Confirmar contraseña"}
             onHandle={onHandleConfirmPassword}
             value={confirmPassword}
             isSecure={true}
-            error={""}
+            error={confirmPasswordError}
           />
         </View>
         <View style={styles.bottomContent}>
