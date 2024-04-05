@@ -1,11 +1,23 @@
 import { StyleSheet, Image, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Palete } from "../globals/Palete";
 import SecondaryButton from "../components/wrappers/SecondaryButton";
 import * as ImagePicker from "expo-image-picker";
+import {
+  useGetImageQuery,
+  usePutImageMutation,
+} from "../app/services/profileData";
+import { useSelector } from "react-redux";
 
-const ImageSelector = () => {
+const ImageSelector = ({ navigation }) => {
   const [image, setImage] = useState("");
+  const [trigerImage] = usePutImageMutation();
+  const localId = useSelector((state) => state.auth.localId);
+  const { data, isSuccess } = useGetImageQuery(localId);
+
+  useEffect(() => {
+    if (isSuccess && data) setImage(data.image);
+  }, [isSuccess, data]);
 
   const pickImage = async () => {
     const { granted } = await ImagePicker.requestCameraPermissionsAsync();
@@ -18,12 +30,13 @@ const ImageSelector = () => {
         base64: true,
       });
       if (!result.canceled) {
-        setImage("data:image/jpeg,base64" + result.assets[0].base64);
+        setImage("data:image/jpeg;base64," + result.assets[0].base64);
       }
     }
   };
   const confirmImage = () => {
-    console.log();
+    trigerImage({ image, localId });
+    navigation.goBack();
   };
   return (
     <View style={styles.container}>

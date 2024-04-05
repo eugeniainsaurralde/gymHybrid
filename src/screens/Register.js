@@ -12,6 +12,7 @@ import { registerSchema } from "../validations/authSchema";
 
 const Register = ({ navigation }) => {
   const dispatch = useDispatch();
+  const [triggerRegister] = useRegisterMutation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,8 +21,6 @@ const Register = ({ navigation }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-
-  const [triggerRegister] = useRegisterMutation();
 
   const onHandleEmail = (t) => {
     setEmail(t);
@@ -36,7 +35,13 @@ const Register = ({ navigation }) => {
     try {
       registerSchema.validateSync({ email, password, confirmPassword });
       const { data } = await triggerRegister({ email, password });
-      dispatch(setUser({ email: data.email, idToken: data.idToken }));
+      dispatch(
+        setUser({
+          email: data.email,
+          idToken: data.idToken,
+          localId: data.localId,
+        })
+      );
     } catch (error) {
       setEmailError("");
       setPasswordError("");

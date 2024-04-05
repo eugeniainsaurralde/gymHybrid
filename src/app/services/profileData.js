@@ -6,14 +6,17 @@ export const profileApi = createApi({
     baseUrl: "https://gym-hybrid-e-commerce-default-rtdb.firebaseio.com/",
   }),
   endpoints: (builder) => ({
-    putProfile: builder.mutation({
+    putImage: builder.mutation({
       query: ({ image, localId }) => ({
         url: `profile/${localId}.json`,
         method: "PUT",
-        body: image,
+        body: { image },
       }),
+    }),
+    getImage: builder.query({
+      query: (localId) => `/profile/${localId}.json`,
     }),
   }),
 });
 
-export const { usePutProfileMutation } = profileApi;
+export const { usePutImageMutation, useGetImageQuery } = profileApi;

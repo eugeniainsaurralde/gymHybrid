@@ -1,13 +1,23 @@
 import { StyleSheet, Image, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Palete } from "../globals/Palete";
 import SecondaryButton from "../components/wrappers/SecondaryButton";
+import { useSelector } from "react-redux";
+import { useGetImageQuery } from "../app/services/profileData";
 
 const Profile = ({ navigation }) => {
+  const [image, setImage] = useState("");
+  const localId = useSelector((state) => state.auth.localId);
+  const { data, isSuccess } = useGetImageQuery(localId);
+
+  useEffect(() => {
+    if (isSuccess && data) setImage(data.image);
+  }, [data]);
+
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../assets/user.png")}
+        source={image ? { uri: image } : require("../../assets/user.png")}
         style={styles.image}
         resizeMode="cover"
       />
