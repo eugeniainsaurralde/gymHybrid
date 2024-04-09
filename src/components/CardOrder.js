@@ -7,9 +7,7 @@ const CardOrder = ({ item }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.text}>
-          Creado el {new Date(item.createAt).toLocaleString()}
-        </Text>
+        <Text style={styles.text}>Creado el {item.createDate}</Text>
         <Text style={styles.text}>Total de la orden: $ {item.total}</Text>
       </View>
       <View>

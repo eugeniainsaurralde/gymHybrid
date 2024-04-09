@@ -5,6 +5,7 @@ export const profileApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://gym-hybrid-e-commerce-default-rtdb.firebaseio.com/",
   }),
+  tagTypes: ["Images"],
   endpoints: (builder) => ({
     putImage: builder.mutation({
       query: ({ image, localId }) => ({
@@ -12,9 +13,11 @@ export const profileApi = createApi({
         method: "PUT",
         body: { image },
       }),
+      invalidatesTags: ["Images"],
     }),
     getImage: builder.query({
       query: (localId) => `/profile/${localId}.json`,
+      providesTags: ["Images"],
     }),
   }),
 });

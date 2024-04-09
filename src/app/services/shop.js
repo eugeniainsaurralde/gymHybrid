@@ -18,14 +18,11 @@ export const shopApi = createApi({
       },
     }),
     getProductById: builder.query({
-      query: (id) => `/products/${id}.json`,
-    }),
-    postOrder: builder.mutation({
-      query: ({ ...order }) => ({
-        url: "orders.json",
-        method: "POST",
-        body: order,
-      }),
+      query: (id) => `/products.json?orderBy="id"&equalTo=${id}`,
+      transformResponse: (response) => {
+        const data = Object.values(response);
+        return data[0];
+      },
     }),
   }),
 });
@@ -34,5 +31,4 @@ export const {
   useGetProductsByCategoryQuery,
   useGetCategoriesQuery,
   useGetProductByIdQuery,
-  usePostOrderMutation,
 } = shopApi;

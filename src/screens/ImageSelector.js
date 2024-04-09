@@ -57,7 +57,7 @@ const ImageSelector = ({ navigation }) => {
         styleText={styles.text}
         onPress={() => confirmImage()}
       >
-        {"Confimar foto"}
+        {"Confirmar foto"}
       </SecondaryButton>
     </View>
   );

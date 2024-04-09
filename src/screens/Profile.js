@@ -6,18 +6,13 @@ import { useSelector } from "react-redux";
 import { useGetImageQuery } from "../app/services/profileData";
 
 const Profile = ({ navigation }) => {
-  const [image, setImage] = useState("");
   const localId = useSelector((state) => state.auth.localId);
-  const { data, isSuccess } = useGetImageQuery(localId);
-
-  useEffect(() => {
-    if (isSuccess && data) setImage(data.image);
-  }, [data]);
+  const { data } = useGetImageQuery(localId);
 
   return (
     <View style={styles.container}>
       <Image
-        source={image ? { uri: image } : require("../../assets/user.png")}
+        source={data ? { uri: data.image } : require("../../assets/user.png")}
         style={styles.image}
         resizeMode="cover"
       />
@@ -26,7 +21,7 @@ const Profile = ({ navigation }) => {
         styleText={styles.text}
         onPress={() => navigation.navigate("ImageSelector")}
       >
-        {"+ Agregar foto"}
+        {"+ Agregar/modificar foto"}
       </SecondaryButton>
     </View>
   );

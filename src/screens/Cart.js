@@ -1,18 +1,29 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import { useSelector } from "react-redux";
-import { usePostOrderMutation } from "../app/services/shop";
+import { useSelector, useDispatch } from "react-redux";
+
+import { usePostOrderMutation } from "../app/services/orders";
+import { deleteCart } from "../features/Cart/cartSlice";
 
 import CardItemCart from "../components/CardItemCart";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
 import Fonts from "../globals/Fonts";
 import { Palete } from "../globals/Palete";
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const [triggerPost, result] = usePostOrderMutation();
+  const localId = useSelector((state) => state.auth.localId);
+  const [triggerAddOrder] = usePostOrderMutation();
 
-  const confirmCart = () => {
-    triggerPost({ total, cartItems, user: "loggedUser" });
+  const handlerAddOrder = async () => {
+    const createDate = new Date().toLocaleString();
+    const order = {
+      createDate,
+      ...cart,
+    };
+    await triggerAddOrder({ localId, order });
+    dispatch(deleteCart());
+    navigation.navigate("OrderStack");
   };
 
   return (
@@ -29,6 +40,9 @@ const Cart = () => {
       <PrimaryButton
         stylePressable={styles.pressable}
         styleText={styles.textPressable}
+        onPress={() => {
+          handlerAddOrder();
+        }}
       >
         {"Finalizar compra"}
       </PrimaryButton>
