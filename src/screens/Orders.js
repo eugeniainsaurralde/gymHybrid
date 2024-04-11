@@ -2,7 +2,7 @@ import { FlatList, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import { useGetOrdersQuery } from "../app/services/orders";
 import CardOrder from "../components/CardOrder";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 const Orders = () => {
   const localId = useSelector((state) => state.auth.localId);

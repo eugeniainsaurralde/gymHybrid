@@ -6,8 +6,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React from "react";
-import { Palete } from "../globals/Palete";
-import Fonts from "../globals/Fonts";
+import { Palete } from "../data/globals/Palete";
+import Fonts from "../data/globals/Fonts";
 import SecondaryButton from "./wrappers/SecondaryButton";
 
 const CardProducts = ({ item, navigation }) => {

@@ -1,18 +1,19 @@
 import { StyleSheet, View, Pressable, Text } from "react-native";
-import React, { useState } from "react";
-import { Palete } from "../globals/Palete";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { Palete } from "../data/globals/Palete";
 import Input from "../components/Input";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 
 import { useRegisterMutation } from "../app/services/auth";
-import { useDispatch } from "react-redux";
 import { setUser } from "../features/Auth/authSlice";
 import { registerSchema } from "../validations/authSchema";
+import { insertSession } from "../data/db";
 
 const Register = ({ navigation }) => {
   const dispatch = useDispatch();
-  const [triggerRegister] = useRegisterMutation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +22,8 @@ const Register = ({ navigation }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const [triggerRegister] = useRegisterMutation();
 
   const onHandleEmail = (t) => {
     setEmail(t);
@@ -35,6 +38,9 @@ const Register = ({ navigation }) => {
     try {
       registerSchema.validateSync({ email, password, confirmPassword });
       const { data } = await triggerRegister({ email, password });
+      /*     await insertSession(data)
+        .then((result) => console.log(result))
+        .catch((error) => console.log(error.message)); */
       dispatch(
         setUser({
           email: data.email,

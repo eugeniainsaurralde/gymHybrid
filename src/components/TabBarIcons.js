@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 const TabBarIcons = ({ nameIcon, focused }) => {
   return (

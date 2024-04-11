@@ -7,7 +7,7 @@ import {
   Text,
 } from "react-native";
 
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 import { EvilIcons } from "@expo/vector-icons";
 import { useState } from "react";
 

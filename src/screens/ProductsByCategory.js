@@ -5,7 +5,7 @@ import { useGetProductsByCategoryQuery } from "../app/services/shop";
 
 import CardProducts from "../components/CardProducts";
 import Search from "../components/Search";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 const ProductsByCategory = ({ navigation, route }) => {
   const { categorySelected } = route.params;

@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Header from "../components/Header";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 import Profile from "../screens/Profile";
 import ImageSelector from "../screens/ImageSelector";
 

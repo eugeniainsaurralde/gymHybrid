@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput, View, Text } from "react-native";
 import React from "react";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 const Input = ({ placeholder, onHandle, value, isSecure = false, error }) => {
   return (

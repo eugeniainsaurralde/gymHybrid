@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Orders from "../screens/Orders";
 import Header from "../components/Header";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 const Stack = createNativeStackNavigator();
 const OrderStack = () => {

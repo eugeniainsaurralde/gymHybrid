@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 import ShopStack from "./ShopStack";
 import CartStack from "./CartStack";

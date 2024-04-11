@@ -11,8 +11,8 @@ import { useDispatch } from "react-redux";
 import { addCartItem } from "../features/Cart/cartSlice";
 import { useGetProductByIdQuery } from "../app/services/shop";
 
-import { Palete } from "../globals/Palete";
-import Fonts from "../globals/Fonts";
+import { Palete } from "../data/globals/Palete";
+import Fonts from "../data/globals/Fonts";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
 import Counter from "../components/Counter";
@@ -29,14 +29,21 @@ const ProductDetail = ({ route }) => {
     setQuantity(quantity);
   };
 
-  if (isLoading) return null;
+  if (isLoading)
+    return (
+      <View>
+        <Text>"Cargando.."</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
       <ShadowPrimary style={styles.imageContainer}>
         <Image
           source={{
-            uri: productDetail.thumbnail,
+            uri: productDetail?.image
+              ? productDetail.image[2]
+              : productDetail.thumbnail,
           }}
           style={styles.image}
           resizeMode={"cover"}
@@ -49,7 +56,7 @@ const ProductDetail = ({ route }) => {
           width >= 320 ? { fontSize: 25 } : { fontSize: 18 },
         ]}
       >
-        {productDetail.description}
+        {productDetail?.description}
       </Text>
 
       <View style={styles.numberInfoContainer}>
@@ -60,7 +67,7 @@ const ProductDetail = ({ route }) => {
             width >= 320 ? { fontSize: 25 } : { fontSize: 18 },
           ]}
         >
-          ${productDetail.price}
+          ${productDetail?.price}
         </Text>
       </View>
 

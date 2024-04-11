@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { deleteCartItem } from "../features/Cart/cartSlice";
 
 import { AntDesign } from "@expo/vector-icons";
-import { Palete } from "../globals/Palete";
-import Fonts from "../globals/Fonts";
+import { Palete } from "../data/globals/Palete";
+import Fonts from "../data/globals/Fonts";
 
 const CardItemCart = ({ item }) => {
   const dispatch = useDispatch();

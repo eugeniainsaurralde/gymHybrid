@@ -1,6 +1,6 @@
 import { StyleSheet, Image, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 import SecondaryButton from "../components/wrappers/SecondaryButton";
 import * as ImagePicker from "expo-image-picker";
 import {
@@ -36,7 +36,7 @@ const ImageSelector = ({ navigation }) => {
   };
   const confirmImage = () => {
     trigerImage({ image, localId });
-    navigation.goBack();
+    navigation.goBack;
   };
   return (
     <View style={styles.container}>

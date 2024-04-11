@@ -4,7 +4,7 @@ import ProductsByCategory from "../screens/ProductsByCategory";
 import Home from "../screens/Home";
 import ProductDetail from "../screens/ProductDetail";
 import Header from "../components/Header";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 const Stack = createNativeStackNavigator();
 

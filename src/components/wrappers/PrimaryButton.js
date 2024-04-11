@@ -1,6 +1,6 @@
 import { StyleSheet, Text, Pressable } from "react-native";
-import { Palete } from "../../globals/Palete";
-import Fonts from "../../globals/Fonts";
+import { Palete } from "../../data/globals/Palete";
+import Fonts from "../../data/globals/Fonts";
 
 const PrimaryButton = ({ stylePressable, styleText, children, onPress }) => {
   return (

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 import SecondaryButton from "../components/wrappers/SecondaryButton";
 
 const Counter = ({ onHandleQuantity }) => {

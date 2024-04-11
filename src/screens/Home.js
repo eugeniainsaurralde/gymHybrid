@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import Categories from "../components/Categories";
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 
 const Home = ({ navigation }) => {
   return (

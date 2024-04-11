@@ -1,15 +1,16 @@
 import { StyleSheet, View, Pressable, Text } from "react-native";
 import React, { useState } from "react";
-
-import { useLoginMutation } from "../app/services/auth";
 import { useDispatch } from "react-redux";
-import { setUser } from "../features/Auth/authSlice";
 
-import { Palete } from "../globals/Palete";
+import { Palete } from "../data/globals/Palete";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
 import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 import Input from "../components/Input";
+
+import { useLoginMutation } from "../app/services/auth";
+import { setUser } from "../features/Auth/authSlice";
 import { loginSchema } from "../validations/authSchema";
+import { insertSession } from "../data/db";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Login = ({ navigation }) => {
     try {
       loginSchema.validateSync({ email, password });
       const { data } = await triggerLogin({ email, password });
+
       dispatch(
         setUser({
           email: data.email,

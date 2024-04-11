@@ -6,8 +6,8 @@ import { deleteCart } from "../features/Cart/cartSlice";
 
 import CardItemCart from "../components/CardItemCart";
 import PrimaryButton from "../components/wrappers/PrimaryButton";
-import Fonts from "../globals/Fonts";
-import { Palete } from "../globals/Palete";
+import Fonts from "../data/globals/Fonts";
+import { Palete } from "../data/globals/Palete";
 
 const Cart = ({ navigation }) => {
   const dispatch = useDispatch();

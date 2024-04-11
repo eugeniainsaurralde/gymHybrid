@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import React from "react";
-import { Palete } from "../globals/Palete";
-import Fonts from "../globals/Fonts";
+import { Palete } from "../data/globals/Palete";
+import Fonts from "../data/globals/Fonts";
 
 const Header = ({ title, color = Palete.secondary }) => {
   const { width } = useWindowDimensions();

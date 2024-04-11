@@ -1,6 +1,6 @@
 import { StyleSheet, Image, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import { Palete } from "../globals/Palete";
+import React from "react";
+import { Palete } from "../data/globals/Palete";
 import SecondaryButton from "../components/wrappers/SecondaryButton";
 import { useSelector } from "react-redux";
 import { useGetImageQuery } from "../app/services/profileData";

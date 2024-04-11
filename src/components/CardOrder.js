@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { Palete } from "../globals/Palete";
-import Fonts from "../globals/Fonts";
+import { Palete } from "../data/globals/Palete";
+import Fonts from "../data/globals/Fonts";
 
 const CardOrder = ({ item }) => {
   return (
