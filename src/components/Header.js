@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import React from "react";
 import { Palete } from "../data/globals/Palete";
 import Fonts from "../data/globals/Fonts";
@@ -28,6 +34,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Palete.darkWhite,
     padding: "3%",
+
     flexWrap: "wrap",
   },
   text: {

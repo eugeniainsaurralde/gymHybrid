@@ -10,7 +10,7 @@ import Input from "../components/Input";
 import { useLoginMutation } from "../app/services/auth";
 import { setUser } from "../features/Auth/authSlice";
 import { loginSchema } from "../validations/authSchema";
-import { insertSession } from "../data/db";
+import { deleteSession, insertSession } from "../data/db/sqlite";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -33,6 +33,9 @@ const Login = ({ navigation }) => {
     try {
       loginSchema.validateSync({ email, password });
       const { data } = await triggerLogin({ email, password });
+
+      deleteSession();
+      insertSession(data);
 
       dispatch(
         setUser({

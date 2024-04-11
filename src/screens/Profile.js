@@ -1,13 +1,28 @@
 import { StyleSheet, Image, View } from "react-native";
 import React from "react";
+
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AntDesign } from "@expo/vector-icons";
+
+import { useGetImageQuery } from "../app/services/profileData";
+import { clearUser } from "../features/Auth/authSlice";
+import { deleteSession } from "../data/db/sqlite";
+
 import { Palete } from "../data/globals/Palete";
 import SecondaryButton from "../components/wrappers/SecondaryButton";
-import { useSelector } from "react-redux";
-import { useGetImageQuery } from "../app/services/profileData";
 
 const Profile = ({ navigation }) => {
+  const dispatch = useDispatch();
   const localId = useSelector((state) => state.auth.localId);
+  const tokenId = useSelector((state) => state.auth.idToken);
+
   const { data } = useGetImageQuery(localId);
+
+  const onLogOut = () => {
+    dispatch(clearUser());
+    deleteSession();
+  };
 
   return (
     <View style={styles.container}>
@@ -21,8 +36,19 @@ const Profile = ({ navigation }) => {
         styleText={styles.text}
         onPress={() => navigation.navigate("ImageSelector")}
       >
-        {"+ Agregar/modificar foto"}
+        <AntDesign name="camerao" size={30} />
+        {"  Agregar/modificar foto"}
       </SecondaryButton>
+      {tokenId && (
+        <SecondaryButton
+          stylePressable={styles.pressable}
+          styleText={styles.text}
+          onPress={onLogOut}
+        >
+          <AntDesign name="deleteuser" size={30} />
+          {"  Cerrar sesion"}
+        </SecondaryButton>
+      )}
     </View>
   );
 };

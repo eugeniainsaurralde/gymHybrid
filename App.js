@@ -8,8 +8,9 @@ import MainNavigator from "./src/navigation/MainNavigator";
 
 import { store } from "./src/app/Store";
 import { Provider } from "react-redux";
+import { init } from "./src/data/db/sqlite";
 
-import { init } from "./src/data/db";
+init();
 
 const App = () => {
   const [fontLoaded] = useFonts(FontCollection);

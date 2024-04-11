@@ -10,7 +10,7 @@ import ShadowPrimary from "../components/wrappers/ShadowPrimary";
 import { useRegisterMutation } from "../app/services/auth";
 import { setUser } from "../features/Auth/authSlice";
 import { registerSchema } from "../validations/authSchema";
-import { insertSession } from "../data/db";
+import { deleteSession, insertSession } from "../data/db/sqlite";
 
 const Register = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -38,9 +38,10 @@ const Register = ({ navigation }) => {
     try {
       registerSchema.validateSync({ email, password, confirmPassword });
       const { data } = await triggerRegister({ email, password });
-      /*     await insertSession(data)
-        .then((result) => console.log(result))
-        .catch((error) => console.log(error.message)); */
+
+      deleteSession();
+      insertSession(data);
+
       dispatch(
         setUser({
           email: data.email,
